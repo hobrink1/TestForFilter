@@ -232,7 +232,7 @@ class myTableViewController: UIViewController, UITableViewDelegate, UITableViewD
             let searchTextArr = searchText.split(separator: " ")
             
             // print what we got
-            print("searchTextArr: \(searchTextArr)")
+            //print("searchTextArr: \(searchTextArr)")
 
             filteredRestaurants = (restaurants?.filter { restaurant in
                 
@@ -242,7 +242,7 @@ class myTableViewController: UIViewController, UITableViewDelegate, UITableViewD
                     // if we find something, return true
                     if restaurant.name.localizedStandardContains(token) {
                         
-                        print("restaurant: \(restaurant.name): token: \(token), return true\n")
+                        //print("restaurant: \(restaurant.name): token: \(token), return true\n")
                         
                         return true
                     }
@@ -253,7 +253,7 @@ class myTableViewController: UIViewController, UITableViewDelegate, UITableViewD
                     if restaurant.shopName != nil {
                         if ((restaurant.shopName!.localizedStandardContains(token))) {
                             
-                            print("restaurant: \(restaurant.shopName!): token: \(token), return true\n")
+                            //print("restaurant: \(restaurant.shopName!): token: \(token), return true\n")
                             
                             return true
                         }
@@ -262,7 +262,7 @@ class myTableViewController: UIViewController, UITableViewDelegate, UITableViewD
                     if restaurant.address != nil {
                         if ((restaurant.address!.localizedStandardContains(token))) {
                             
-                            print("restaurant: \(restaurant.address!): token: \(token), return true\n")
+                            //print("restaurant: \(restaurant.address!): token: \(token), return true\n")
                             
                             return true
                         }
@@ -271,32 +271,36 @@ class myTableViewController: UIViewController, UITableViewDelegate, UITableViewD
                     if restaurant.city != nil {
                         if ((restaurant.city!.localizedStandardContains(token))) {
                             
-                            print("restaurant: \(restaurant.city!): token: \(token), return true\n")
+                            //print("restaurant: \(restaurant.city!): token: \(token), return true\n")
                             
                             return true
                         }
                     }
                     
-                    print("restaurant: \(restaurant.name): token: \(token), next loop")
+                    //print("restaurant: \(restaurant.name): token: \(token), next loop")
                 }
                 
-                print("restaurant: \(restaurant.name): return false\n")
+                //print("restaurant: \(restaurant.name): return false\n")
                 
                 return false
             })!
             
             // final printout
-            print("\n\nFinal result:")
-            for item in filteredRestaurants {
-                print("found restaurant: \(item.name)")
-            }
+            //print("\n\nFinal result:")
+            //for item in filteredRestaurants {
+            //    print("found restaurant: \(item.name)")
+            //}
             
             
-            
+            // update UI
             numberLabel?.text = "\(filteredRestaurants.count) esercizi disponibili"
+            
             restaurantsTableView?.reloadData()
+            
             if filteredRestaurants.count > 0 {
-                restaurantsTableView?.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: UITableView.ScrollPosition.top, animated: true)
+                restaurantsTableView?.scrollToRow(at: IndexPath.init(row: 0, section: 0),
+                                                  at: UITableView.ScrollPosition.top,
+                                                  animated: true)
             }
         }
     }
