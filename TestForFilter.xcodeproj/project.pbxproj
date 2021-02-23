@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		F27191F125E58D51001FD171 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27191F025E58D51001FD171 /* AppDelegate.swift */; };
 		F27191F325E58D51001FD171 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27191F225E58D51001FD171 /* SceneDelegate.swift */; };
-		F27191F525E58D51001FD171 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27191F425E58D51001FD171 /* ViewController.swift */; };
+		F27191F525E58D51001FD171 /* myTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27191F425E58D51001FD171 /* myTableViewController.swift */; };
 		F27191F825E58D51001FD171 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F27191F625E58D51001FD171 /* Main.storyboard */; };
 		F27191FA25E58D53001FD171 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F27191F925E58D53001FD171 /* Assets.xcassets */; };
 		F27191FD25E58D53001FD171 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F27191FB25E58D53001FD171 /* LaunchScreen.storyboard */; };
+		F271920725E5A2BF001FD171 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F271920625E5A2BF001FD171 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F27191ED25E58D51001FD171 /* TestForFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestForFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F27191F025E58D51001FD171 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F27191F225E58D51001FD171 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F27191F425E58D51001FD171 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F27191F425E58D51001FD171 /* myTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myTableViewController.swift; sourceTree = "<group>"; };
 		F27191F725E58D51001FD171 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F27191F925E58D53001FD171 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F27191FC25E58D53001FD171 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F27191FE25E58D53001FD171 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F271920625E5A2BF001FD171 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,8 @@
 			children = (
 				F27191F025E58D51001FD171 /* AppDelegate.swift */,
 				F27191F225E58D51001FD171 /* SceneDelegate.swift */,
-				F27191F425E58D51001FD171 /* ViewController.swift */,
+				F27191F425E58D51001FD171 /* myTableViewController.swift */,
+				F271920625E5A2BF001FD171 /* TableViewCell.swift */,
 				F27191F625E58D51001FD171 /* Main.storyboard */,
 				F27191F925E58D53001FD171 /* Assets.xcassets */,
 				F27191FB25E58D53001FD171 /* LaunchScreen.storyboard */,
@@ -137,7 +140,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F27191F525E58D51001FD171 /* ViewController.swift in Sources */,
+				F27191F525E58D51001FD171 /* myTableViewController.swift in Sources */,
+				F271920725E5A2BF001FD171 /* TableViewCell.swift in Sources */,
 				F27191F125E58D51001FD171 /* AppDelegate.swift in Sources */,
 				F27191F325E58D51001FD171 /* SceneDelegate.swift in Sources */,
 			);
