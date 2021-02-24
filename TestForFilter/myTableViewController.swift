@@ -228,80 +228,80 @@ class myTableViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         else {
             
-            // split the searchText into single words
-            let searchTextArr = searchText.split(separator: " ")
+            // we save the current search text to a local copy, just to make it more safe
+            let asyncSearchText = searchText
             
-            // print what we got
-            //print("searchTextArr: \(searchTextArr)")
-
-            filteredRestaurants = (restaurants?.filter { restaurant in
+            // now get off main thread!
+            // we use the global queue with the qos .userintiated, which is the second highest class
+            DispatchQueue.global(qos: .userInitiated).async(execute: {
                 
-                // walk over the tokens
-                for token in searchTextArr {
+                // split the searchText into single words
+                let searchTextArr = asyncSearchText.split(separator: " ")
+                
+                // in the async call we prepare the filtered restaurants in a local storage, just to
+                // avoid disturbing the ongoing things on the main thread
+                let asyncFilteredRestaurants = (self.restaurants?.filter { restaurant in
                     
-                    // if we find something, return true
-                    if restaurant.name.localizedStandardContains(token) {
+                    // walk over the tokens
+                    for token in searchTextArr {
                         
-                        //print("restaurant: \(restaurant.name): token: \(token), return true\n")
+                        // if we find something, return true
+                        if restaurant.name.localizedStandardContains(token) {
+                            
+                            return true
+                        }
                         
-                        return true
-                    }
-                    
-                    // we do not find it by name, so print it for testing
-                    // but you can add here next search for .street etc.)
-                    
-                    if restaurant.shopName != nil {
-                        if ((restaurant.shopName!.localizedStandardContains(token))) {
-                            
-                            //print("restaurant: \(restaurant.shopName!): token: \(token), return true\n")
-                            
-                            return true
+                        // we do not find it by name, so print it for testing
+                        // but you can add here next search for .street etc.)
+                        
+                        if restaurant.shopName != nil {
+                            if ((restaurant.shopName!.localizedStandardContains(token))) {
+                                
+                                return true
+                            }
+                        }
+                        
+                        if restaurant.address != nil {
+                            if ((restaurant.address!.localizedStandardContains(token))) {
+                                
+                                return true
+                            }
+                        }
+                        
+                        if restaurant.city != nil {
+                            if ((restaurant.city!.localizedStandardContains(token))) {
+                                
+                                return true
+                            }
                         }
                     }
                     
-                    if restaurant.address != nil {
-                        if ((restaurant.address!.localizedStandardContains(token))) {
-                            
-                            //print("restaurant: \(restaurant.address!): token: \(token), return true\n")
-                            
-                            return true
-                        }
-                    }
-                    
-                    if restaurant.city != nil {
-                        if ((restaurant.city!.localizedStandardContains(token))) {
-                            
-                            //print("restaurant: \(restaurant.city!): token: \(token), return true\n")
-                            
-                            return true
-                        }
-                    }
-                    
-                    //print("restaurant: \(restaurant.name): token: \(token), next loop")
-                }
+                    return false
+                })!
                 
-                //print("restaurant: \(restaurant.name): return false\n")
                 
-                return false
-            })!
-            
-            // final printout
-            //print("\n\nFinal result:")
-            //for item in filteredRestaurants {
-            //    print("found restaurant: \(item.name)")
-            //}
-            
-            
-            // update UI
-            numberLabel?.text = "\(filteredRestaurants.count) esercizi disponibili"
-            
-            restaurantsTableView?.reloadData()
-            
-            if filteredRestaurants.count > 0 {
-                restaurantsTableView?.scrollToRow(at: IndexPath.init(row: 0, section: 0),
-                                                  at: UITableView.ScrollPosition.top,
-                                                  animated: true)
-            }
+                // we are finished, so we have to resync with the main thread, by calling the main thread
+                DispatchQueue.main.async(execute: {
+                    
+                    // here we are, back on main thread
+                    
+                    // first step: make the filtered restaurants available
+                    self.filteredRestaurants = asyncFilteredRestaurants
+                    
+                    
+                    // second step: update UI
+                    self.numberLabel?.text = "\(self.filteredRestaurants.count) esercizi disponibili"
+                    
+                    self.restaurantsTableView?.reloadData()
+                    
+                    if self.filteredRestaurants.count > 0 {
+                        
+                        self.restaurantsTableView?.scrollToRow(at: IndexPath.init(row: 0, section: 0),
+                                                               at: UITableView.ScrollPosition.top,
+                                                               animated: true)
+                    }
+                })
+            })
         }
     }
     
